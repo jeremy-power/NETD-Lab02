@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A3613B45-EDCD-4CA4-8190-25344DC6FB11}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>WindowsApplication1.My.MyApplication</StartupObject>
-    <RootNamespace>WindowsApplication1</RootNamespace>
-    <AssemblyName>NETD-Lab02</AssemblyName>
+    <StartupObject>NETD_Lab02.My.MyApplication</StartupObject>
+    <RootNamespace>NETD_Lab02</RootNamespace>
+    <AssemblyName>NETD_Lab02</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>NETD-Lab02.xml</DocumentationFile>
+    <DocumentationFile>NETD_Lab02.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>NETD-Lab02.xml</DocumentationFile>
+    <DocumentationFile>NETD_Lab02.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -47,7 +47,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icons-Land-Sport-Golf-Ball.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons-Land-Sport-Golf-Ball.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -75,11 +75,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="NETD_Lab02.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="NETD_Lab02.Designer.vb">
+      <DependentUpon>NETD_Lab02.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -99,8 +99,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="NETD_Lab02.resx">
+      <DependentUpon>NETD_Lab02.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -123,6 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons-Land-Sport-Golf-Ball.ico" />
+    <None Include="Resources\Icons-Land-Sport-Golf-Ball.ico" />
+    <None Include="Resources\balle-sur-tee.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
