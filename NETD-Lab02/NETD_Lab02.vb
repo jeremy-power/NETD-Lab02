@@ -1,11 +1,22 @@
-﻿Public Class frmGolfMain
+﻿' ---------------------------------------------'
+' Name: Jeremy Power 100523300                 '
+' Date: May 31, 2017                           '
+' Purpose: Lab 2                               '
+' Description: Golf Traacker Form              '
+' Allows the user to enter a golf score, the   '
+' program then displays the score and          '
+' compares that score with the par of the      '
+' hole to give the user a result (ie bogey)    '
+' ---------------------------------------------'
+
+Public Class frmGolfMain
 #Region "Global Variable Declaration"
     'array to hold the par for each hole
-    Dim gpars() As Integer = {72, 4, 4, 5, 4, 3, 4, 3, 5, 4, 3, 4, 4, 5, 4, 5, 3, 4, 4}
+    Dim _pars() As Integer = {72, 4, 4, 5, 4, 3, 4, 3, 5, 4, 3, 4, 4, 5, 4, 5, 3, 4, 4}
     'array to hold the user's score for each hole
-    Dim gscores(17) As Integer
+    Dim _scores(17) As Integer
     'variable to track current hole
-    Dim gcurrentHole As Integer
+    Dim _currentHole As Integer
 #End Region
     ''' <summary>
     ''' Handles the form loading event
@@ -13,7 +24,7 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub frmGolfMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        resetForm()
+        Call resetForm()
 
     End Sub
     ''' <summary>
@@ -36,9 +47,9 @@
         'sets focus on the score input number box
         nudScore.Focus()
         'sets the current hole to 0
-        gcurrentHole = 1
+        _currentHole = 1
         'sets the default option of the input number box to the par of the current hole
-        nudScore.Value = gpars(gcurrentHole)
+        nudScore.Value = _pars(_currentHole)
 
         'fills in all hole numbers
         For k As Integer = 1 To 18
@@ -47,7 +58,7 @@
 
         'fills in all par numbers
         For i As Integer = 1 To 18
-            txtPar.Text += CStr(gpars(i)) + vbCrLf
+            txtPar.Text += CStr(_pars(i)) + vbCrLf
         Next
 
         'resets all labels and text boes on the form
@@ -61,8 +72,8 @@
         btnScore.Enabled = True
 
         'resets scores to 0
-        For i As Integer = 0 To gscores.Length - 1
-            gscores(i) = 0
+        For i As Integer = 0 To _scores.Length - 1
+            _scores(i) = 0
         Next
 
     End Sub
@@ -73,7 +84,7 @@
     ''' </summary>
     Private Sub inputScore()
         'handles the event ending after 18 holes
-        If (gcurrentHole < 19) Then
+        If (_currentHole < 19) Then
 
             'sets the user's input to a value
             Dim currentScore As Integer = CInt(nudScore.Value)
@@ -81,16 +92,16 @@
             txtScore.Text += CStr(currentScore) + vbCrLf
 
             'sets the result text to outcome of the user's shot
-            txtResult.Text += getResult(gpars(gcurrentHole), CInt(currentScore)) + vbCrLf
+            txtResult.Text += getResult(_pars(_currentHole), CInt(currentScore)) + vbCrLf
 
             'sets total score and  and final result against par values to their respective text boxes
             txtScoreFinal.Text = CStr(currentTotal((currentScore)))
             txtResultFinal.Text = CStr(currentResult(currentTotal(currentScore)))
 
             ''moves logic to next hole
-            gcurrentHole += 1
+            _currentHole += 1
             'ends at 19
-            If (gcurrentHole = 19) Then
+            If (_currentHole = 19) Then
                 'completes form
                 lblHoleNum.Text = "COMPLETE"
                 nudScore.Enabled = False
@@ -98,8 +109,8 @@
 
                 'if not ending, moves form to next hole
             Else
-                nudScore.Value = gpars(gcurrentHole)
-                lblHoleNum.Text = CStr(gcurrentHole)
+                nudScore.Value = _pars(_currentHole)
+                lblHoleNum.Text = CStr(_currentHole)
             End If
 
         End If
@@ -113,7 +124,7 @@
     ''' <param name="e"></param>
     Private Sub btnScore_Click(sender As Object, e As EventArgs) Handles btnScore.Click
         'inputs the score
-        inputScore()
+        Call inputScore()
     End Sub
 
     ''' <summary>
@@ -122,7 +133,7 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        Me.Close()
+        Call Me.Close()
     End Sub
 
     ''' <summary>
@@ -172,14 +183,14 @@
         'integer to hold current total score
         Dim totalScore As Integer
         'avoids index out of boud error
-        If gcurrentHole < 19 Then
+        If _currentHole < 19 Then
             'adds the current hole score to its spot in the array
-            gscores(gcurrentHole - 1) = score
+            _scores(_currentHole - 1) = score
 
             'iterates through the array
-            For i As Integer = 0 To gscores.Length - 1
+            For i As Integer = 0 To _scores.Length - 1
                 'adds all scores together
-                totalScore += gscores(i)
+                totalScore += _scores(i)
             Next
         End If
         'returns total score
@@ -196,11 +207,11 @@
         'value to hold the par up to this hole
         Dim currentPar As Integer
         'avoids index out of bound error
-        If gcurrentHole < 19 Then
+        If _currentHole < 19 Then
             'iterates from hole 1 to the current hole
-            For i As Integer = 1 To gcurrentHole
+            For i As Integer = 1 To _currentHole
                 'adds up all pars
-                currentPar += gpars(i)
+                currentPar += _pars(i)
             Next
         End If
         'returns the difference between the user's score and par
